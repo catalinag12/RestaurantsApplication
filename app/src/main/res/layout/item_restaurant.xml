@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:minHeight="@dimen/min_height">
+
+    <ImageView
+        android:id="@+id/list_item_icon"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:padding="@dimen/padding_16"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/list_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingStart="@dimen/padding_16"
+        android:paddingTop="@dimen/padding_16"
+        android:paddingEnd="@dimen/padding_16"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/list_item_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="@tools:sample/cities" />
+
+    <TextView
+        android:id="@+id/list_item_secondary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:alpha="0.6"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingStart="@dimen/padding_16"
+        android:paddingEnd="@dimen/padding_16"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/list_item_icon"
+        app:layout_constraintTop_toBottomOf="@+id/list_item_text"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="@tools:sample/lorem/random" />
+</android.support.constraint.ConstraintLayout>
