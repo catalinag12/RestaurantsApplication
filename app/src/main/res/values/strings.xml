@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Restaurants Application</string>
-    <string name="splash">Splash Activity</string>
-    <string name="restaurants">Restaurants Activity</string>
     <dimen name="text_size">30sp</dimen>
     <dimen name="padding_16">16dp</dimen>
     <dimen name="icon_size">100dp</dimen>
     <dimen name="min_height">64dp</dimen>
+    <string name="splash">Splash Activity</string>
+    <string name="restaurants">Restaurants Activity</string>
+    <string name="app_name">Restaurants Application</string>
 </resources>

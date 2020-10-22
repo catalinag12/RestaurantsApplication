@@ -20,10 +20,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
    private ArrayList<Item> items;
 
    private Context context;
+   private ItemClickListener listener;
 
-   public ItemAdapter(Context context, ArrayList<Item> items){
+   public ItemAdapter(Context context, ArrayList<Item> items, ItemClickListener listener){
        this.items=items;
        this.context=context;
+       this.listener=listener;
    }
 
     @NonNull
@@ -51,7 +53,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         //marimea intregii liste
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder{
+    class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private AppCompatImageView image;
         private AppCompatTextView title;
@@ -64,6 +66,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             title=itemView.findViewById(R.id.list_item_text);
             subtitle=itemView.findViewById(R.id.list_item_secondary_text);
 
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View itemView) {
+            listener.onClick(itemView,getAdapterPosition());
+
+        }
+    }
+
+    public interface  ItemClickListener{
+       void onClick(View v, int position);
     }
 }
