@@ -1,31 +1,40 @@
-package com.example.restaurantsapplication;
+package com.example.restaurantsapplication.adapter;
 
 import android.content.Context;
-import androidx.appcompat.widget.AppCompatCheckBox;
+
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+import com.example.restaurantsapplication.R;
 import com.example.restaurantsapplication.model.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
-   private ArrayList<Item> items;
+   private List<Item> itemList;
 
    private Context context;
    private ItemClickListener listener;
 
    public ItemAdapter(Context context, ArrayList<Item> items, ItemClickListener listener){
-       this.items=items;
+       this.itemList=items;
        this.context=context;
        this.listener=listener;
+   }
+
+
+   public void setData(List<Item> itemList){
+       this.itemList=itemList;
+       notifyDataSetChanged();
    }
 
     @NonNull
@@ -33,24 +42,26 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_restaurant,parent,false);
         return new ItemViewHolder(view);
-        //cand cream prima oara viewurile
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
 
-        //cand trebuie sa se afiseze un item nou se afiseaza asta
-        //trebuie sa populam datele
-        Item item=items.get(position);
-        holder.title.setText(item.getTitle());
-        holder.subtitle.setText(item.getSubtitle());
-        holder.image.setImageDrawable(ContextCompat.getDrawable(context,item.getIcon()));
+        Item item=itemList.get(position);
+        String imagePath=item.getIcon();
+        String name=item.getName();
+        String description=item.getDescription();
+
+        holder.title.setText(item.getName());
+        holder.subtitle.setText(item.getDescription());
+
+        Glide.with(holder.itemView.getContext()).load(item.getIcon()).into(holder.image);
+
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
-        //marimea intregii liste
+        return itemList.size();
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

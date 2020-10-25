@@ -1,16 +1,16 @@
-package com.example.restaurantsapplication;
+package com.example.restaurantsapplication.restaurants;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.restaurantsapplication.adapter.CustomAdapter;
+import com.example.restaurantsapplication.R;
 import com.example.restaurantsapplication.model.Image;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RestaurantDetailsActivity extends AppCompatActivity {
