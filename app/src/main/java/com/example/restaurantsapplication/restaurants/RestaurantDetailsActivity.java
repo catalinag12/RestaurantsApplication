@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.restaurantsapplication.adapter.CustomAdapter;
 import com.example.restaurantsapplication.R;
 import com.example.restaurantsapplication.model.Image;
+import com.example.restaurantsapplication.model.Item;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     private TextView tvTitle;
     private TextView tvSubtitle;
     CustomAdapter customAdapter;
+    Item item;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
