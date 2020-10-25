@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 import com.example.restaurantsapplication.R;
@@ -25,7 +26,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
    private Context context;
    private ItemClickListener listener;
 
-   public ItemAdapter(Context context, ArrayList<Item> items, ItemClickListener listener){
+
+   
+    public ItemAdapter(Context context, ArrayList<Item> items, ItemClickListener listener){
        this.itemList=items;
        this.context=context;
        this.listener=listener;
@@ -48,10 +51,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
 
         Item item=itemList.get(position);
-        String imagePath=item.getIcon();
-        String name=item.getName();
-        String description=item.getDescription();
-
         holder.title.setText(item.getName());
         holder.subtitle.setText(item.getDescription());
 
@@ -70,12 +69,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         private AppCompatTextView title;
         private AppCompatTextView subtitle;
 
+        private ProgressBar progressBar;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             image=itemView.findViewById(R.id.list_item_icon);
             title=itemView.findViewById(R.id.list_item_text);
             subtitle=itemView.findViewById(R.id.list_item_secondary_text);
+            progressBar=itemView.findViewById(R.id.progressbar);
 
             itemView.setOnClickListener(this);
         }
@@ -90,4 +91,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public interface  ItemClickListener{
        void onClick(View v, int position);
     }
+
+
 }
