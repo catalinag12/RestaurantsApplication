@@ -4,15 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.restaurantsapplication.R;
 import com.example.restaurantsapplication.adapter.ItemAdapter;
+import com.example.restaurantsapplication.model.Image;
 import com.example.restaurantsapplication.model.Item;
 import com.example.restaurantsapplication.server.RetrofitClient;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,9 +86,14 @@ public class RestaurantsActivity extends AppCompatActivity {
                     String name=itemList.get(position).getName();
                     String description=itemList.get(position).getDescription();
 
+                    List<Image> arrayImages=itemList.get(position).getPhotos();
+
+
+
                     Intent intent=new Intent(getApplicationContext(), RestaurantDetailsActivity.class);
                     intent.putExtra("title", name);
                     intent.putExtra("subtitle",description);
+                    intent.putExtra("photos", (Serializable) arrayImages);
                     startActivityForResult(intent,200);
 
             }

@@ -2,6 +2,8 @@ package com.example.restaurantsapplication.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Item {
 
     @SerializedName("imagePath")
@@ -12,6 +14,18 @@ public class Item {
 
     @SerializedName("description")
     private String description;
+
+
+    public List<Image> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Image> photos) {
+        this.photos = photos;
+    }
+
+    @SerializedName("photos")
+     private List<Image> photos;
 
     public Item(String icon, String title, String subtitle) {
         this.imagePath = icon;

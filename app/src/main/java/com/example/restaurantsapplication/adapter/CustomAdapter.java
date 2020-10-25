@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.restaurantsapplication.R;
 import com.example.restaurantsapplication.model.Image;
 
@@ -36,7 +37,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.ViewHolder holder, int position) {
 
-        holder.imageView.setImageResource(imageArrayList.get(position).getImage());
+        Glide.with(holder.itemView.getContext()).load(imageArrayList.get(position).getImage()).into(holder.imageView);
+
     }
 
     @Override

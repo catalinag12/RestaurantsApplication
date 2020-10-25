@@ -1,17 +1,19 @@
 package com.example.restaurantsapplication.model;
 
-public class Image {
-    private int image;
+import java.io.Serializable;
 
-    public Image(int image) {
-        this.image = image;
+public class Image implements Serializable {
+    private String imagePath;
+
+    public Image(String image) {
+        this.imagePath = image;
     }
 
-    public int getImage() {
-        return image;
+    public String getImage() {
+        return imagePath;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setImage(String image) {
+        this.imagePath = image;
     }
 }
