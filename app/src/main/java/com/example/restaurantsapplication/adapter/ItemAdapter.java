@@ -27,7 +27,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
    private ItemClickListener listener;
 
 
-   
+
     public ItemAdapter(Context context, ArrayList<Item> items, ItemClickListener listener){
        this.itemList=items;
        this.context=context;
