@@ -88,11 +88,17 @@ public class RestaurantsActivity extends AppCompatActivity {
 
                     List<Image> arrayImages=itemList.get(position).getPhotos();
 
+                    Float latitude=itemList.get(position).getLatitude();
+                    Float longitude=itemList.get(position).getLongitude();
+
 
 
                     Intent intent=new Intent(getApplicationContext(), RestaurantDetailsActivity.class);
                     intent.putExtra("title", name);
                     intent.putExtra("subtitle",description);
+                    intent.putExtra("latitude",latitude);
+                    intent.putExtra("longitude",longitude);
+
                     intent.putExtra("photos", (Serializable) arrayImages);
                     startActivityForResult(intent,200);
 

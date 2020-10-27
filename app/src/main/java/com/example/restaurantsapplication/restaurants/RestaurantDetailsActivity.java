@@ -12,9 +12,12 @@ import com.example.restaurantsapplication.adapter.CustomAdapter;
 import com.example.restaurantsapplication.R;
 import com.example.restaurantsapplication.model.Image;
 import com.example.restaurantsapplication.model.Item;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,10 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
     private TextView tvSubtitle;
     CustomAdapter customAdapter;
     private MapView mapView;
-
+    String title = "Title";
+    String subtitle = "Subtitle";
+    Float latitude=0.0f;
+    Float longitude=0.0f;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +43,15 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
         tvSubtitle = findViewById(R.id.list_item_secondary_text);
         mapView=findViewById(R.id.map);
 
-        String title = "Title";
-        String subtitle = "Subtitle";
+
+
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             title = extras.getString("title");
             subtitle = extras.getString("subtitle");
+            latitude=extras.getFloat("latitude");
+            longitude=extras.getFloat("longitude");
         }
 
         tvTitle.setText(title.toString());
@@ -73,5 +82,8 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
+        LatLng latLng=new LatLng(latitude,longitude);
+        googleMap.addMarker(new MarkerOptions().position(latLng).title(title));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
     }
 }

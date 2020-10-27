@@ -15,6 +15,27 @@ public class Item {
     @SerializedName("description")
     private String description;
 
+    @SerializedName("latitude")
+    private Float latitude;
+
+    @SerializedName("longitude")
+    private Float longitude;
+
+    public Float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Float latitude) {
+        this.latitude = latitude;
+    }
+
+    public Float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Float longitude) {
+        this.longitude = longitude;
+    }
 
     public List<Image> getPhotos() {
         return photos;
