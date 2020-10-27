@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".restaurants.RestaurantDetailsActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/appCompatImageView"
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map"
         android:layout_width="0dp"
         android:layout_height="0dp"
 
-        android:src="@drawable/ic_launcher_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent="0.4"
@@ -29,7 +28,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView">
+        app:layout_constraintTop_toBottomOf="@+id/map">
 
         <LinearLayout
             android:layout_width="match_parent"

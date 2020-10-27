@@ -3,6 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
+        def secureProps=new Properties()
+        if(file("../secure.properties").exists()){
+            file("../secure.properties")?.withInputStream { secureProps.load(it)}
+        }
+        resValue "string","maps_api_key", (secureProps.getProperty("MAPS_API_KEY") ?: "")
         applicationId "com.example.restaurantsapplication"
         minSdkVersion 26
         targetSdkVersion 28
@@ -34,4 +39,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    }
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+}
