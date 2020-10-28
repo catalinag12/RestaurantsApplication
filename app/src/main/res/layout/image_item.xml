@@ -8,8 +8,8 @@
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_launcher_background"
         android:id="@+id/image_view"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/image_size"
+        android:layout_height="@dimen/image_size"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 </RelativeLayout>
