@@ -98,6 +98,7 @@ public class RestaurantsActivity extends AppCompatActivity {
                     intent.putExtra("subtitle",description);
                     intent.putExtra("latitude",latitude);
                     intent.putExtra("longitude",longitude);
+                    intent.putExtra("id", position);
 
                     intent.putExtra("photos", (Serializable) arrayImages);
                     startActivityForResult(intent,200);

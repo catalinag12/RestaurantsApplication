@@ -5,15 +5,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.restaurantsapplication.adapter.CustomAdapter;
 import com.example.restaurantsapplication.R;
 import com.example.restaurantsapplication.model.Image;
 import com.example.restaurantsapplication.model.Item;
+import com.example.restaurantsapplication.util.SharedPrefUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -36,7 +41,9 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
     String subtitle = "Subtitle";
     Float latitude=0.0f;
     Float longitude=0.0f;
+    Integer id;
     private Toolbar myToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +61,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
             subtitle = extras.getString("subtitle");
             latitude=extras.getFloat("latitude");
             longitude=extras.getFloat("longitude");
+            id=extras.getInt("id");
         }
 
         tvTitle.setText(title.toString());
@@ -86,11 +94,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
         }
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -99,4 +103,46 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
         googleMap.addMarker(new MarkerOptions().position(latLng).title(title));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
     }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+
+    private Menu  menu;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar,menu);
+        this.menu = menu;
+        if(SharedPrefUtil.isFavourite(this, id)){
+
+            this.menu.findItem(R.id.action_favorite).setVisible(true);
+            this.menu.findItem(R.id.action_not_favorite).setVisible(false);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+            item.setVisible(false);
+            if(R.id.action_favorite == item.getItemId()){
+                SharedPrefUtil.addOrRemoveItem(this,id);
+                this.menu.findItem(R.id.action_not_favorite).setVisible(true);
+            }
+            if(R.id.action_not_favorite == item.getItemId()){
+                SharedPrefUtil.addOrRemoveItem(this,id);
+                this.menu.findItem(R.id.action_favorite).setVisible(true);
+            }
+
+            return super.onOptionsItemSelected(item);
+
+    }
+
+
+
 }
+

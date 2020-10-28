@@ -1,29 +1,36 @@
 package com.example.restaurantsapplication.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+
 
 public class SharedPrefUtil {
     public static final String SHARED_PREFS="sharedPreferences";
 
     private SharedPrefUtil(){
+        super();
     }
 
 
-    static public int getRestaurantId(Context context, String key) {
-        return  context.getSharedPreferences(SHARED_PREFS,Context.MODE_PRIVATE).getInt(key,0);
-    }
-
-    static public void saveData(Context context, String key, int val){
-        context.getSharedPreferences(SHARED_PREFS,Context.MODE_PRIVATE).edit().putInt(key,val).apply();
-    }
-
-    static public SharedPreferences.Editor getSharedPrefEditor(Context context, String pref){
-        return context.getSharedPreferences(pref,Context.MODE_PRIVATE).edit();
-    }
-
-    static public void saveData(SharedPreferences.Editor editor){
+    public static void addOrRemoveItem(Context context, int id){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if(sharedPreferences.contains(id+"")){
+            editor.remove(""+id);
+        }else{
+            editor.putInt(""+id, id);
+        }
         editor.apply();
     }
+
+
+    public  static boolean isFavourite(Context context, int id){
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        if(sharedPreferences.contains(id+"")){
+           return true;
+        }
+        return false;
+    }
+
 }
