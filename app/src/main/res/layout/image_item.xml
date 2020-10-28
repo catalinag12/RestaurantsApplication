@@ -5,6 +5,7 @@
     android:layout_height="110dp">
 
     <ImageView
+        android:contentDescription="@string/app_name"
         android:src="@drawable/ic_launcher_background"
         android:id="@+id/image_view"
         android:layout_width="80dp"
