@@ -1,10 +1,12 @@
 package com.example.restaurantsapplication.restaurants;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -34,6 +36,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
     String subtitle = "Subtitle";
     Float latitude=0.0f;
     Float longitude=0.0f;
+    private Toolbar myToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +45,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
         tvTitle = findViewById(R.id.list_item_text);
         tvSubtitle = findViewById(R.id.list_item_secondary_text);
         mapView=findViewById(R.id.map);
-
-
+        myToolbar=findViewById(R.id.my_toolbar);
 
 
         Bundle extras = getIntent().getExtras();
@@ -76,8 +78,19 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
         mapView.getMapAsync(this::onMapReady);
         mapView.onResume();
 
+        myToolbar.setTitle(title);
+        setSupportActionBar(myToolbar);
+        if(getSupportActionBar()!=null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

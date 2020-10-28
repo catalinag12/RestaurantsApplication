@@ -14,7 +14,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/maps_api_key"/>
-        <activity android:name=".restaurants.RestaurantDetailsActivity"></activity>
+        <activity android:name=".restaurants.RestaurantDetailsActivity"
+            android:theme="@style/AppThemeNoActionBar"></activity>
         <activity android:name=".restaurants.RestaurantsActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
